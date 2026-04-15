@@ -114,7 +114,7 @@ const App = () => {
     <div className="min-h-screen bg-[#F8FAFC] flex flex-col items-center p-6 sm:p-12 text-slate-900">
       <header className="w-full max-w-2xl mb-12 text-center">
         <img src="/logo.png" alt="Kizuna AI" className="w-24 h-24 mx-auto mb-4 object-contain" />
-        <h1 className="text-3xl font-semibold tracking-tight">Kizuna Interaction Layer</h1>
+        <h1 className="text-3xl font-medium tracking-tight text-[#293E53]">Kizuna: Your Cultural Compass</h1>
         <p className="text-slate-500 text-base mt-2">Defining the UX Layer of Cultural Intelligence</p>
         <p className="text-slate-400 text-sm mt-1">絆AI — 文化的知性のインタラクション・レイヤー</p>
       </header>
@@ -127,7 +127,7 @@ const App = () => {
                 <div className="p-2 bg-[#293E53]/10 rounded-xl text-[#293E53]">
                   <MessageCircle size={24} />
                 </div>
-                <h2 className="text-xl font-bold">The Hidden Meaning</h2>
+                <h2 className="text-xl font-bold text-[#293E53]">The Hidden Meaning</h2>
               </div>
               <div className="space-y-4">
                 <div>
@@ -144,10 +144,10 @@ const App = () => {
               <section className="bg-white p-6 rounded-3xl shadow-sm border border-slate-200">
                 <div className="flex items-center gap-2 mb-4 text-emerald-600">
                   <ShieldCheck size={20} />
-                  <span className="text-xs font-black uppercase tracking-widest">AI Confidence</span>
+                  <span className="text-xs font-semibold uppercase tracking-widest">AI Confidence</span>
                 </div>
                 <div className="flex items-end gap-3">
-                  <span className="text-4xl font-black text-slate-900">{result.confidence}%</span>
+                  <span className="text-4xl font-semibold text-[#293E53]">{result.confidence}%</span>
                   <div className="flex-1 h-3 bg-slate-100 rounded-full mb-2.5 overflow-hidden">
                     <div
                       className="h-full bg-emerald-500 rounded-full transition-all duration-1000 ease-out"
@@ -155,15 +155,15 @@ const App = () => {
                     />
                   </div>
                 </div>
-                <p className="text-[10px] text-slate-400 mt-3 font-medium tracking-tight">
-                  MODEL: GPT-5.4-MINI &middot; CHAIN-OF-THOUGHT ANALYSIS
+                <p className="text-[10px] text-slate-400 mt-3 font-medium tracking-tight leading-relaxed">
+                  Model: GPT-5.4-mini<br />Chain-of-Thought Analysis
                 </p>
               </section>
 
               <section className="bg-white p-6 rounded-3xl shadow-sm border border-slate-200">
                 <div className="flex items-center gap-2 mb-4 text-[#293E53]">
                   <Info size={20} />
-                  <span className="text-xs font-black uppercase tracking-widest">Reasoning Path</span>
+                  <span className="text-xs font-semibold uppercase tracking-widest">Reasoning Path</span>
                 </div>
                 <p className="text-sm text-slate-600 italic leading-snug">&ldquo;{result.reasoning}&rdquo;</p>
               </section>
@@ -172,7 +172,7 @@ const App = () => {
             <section className="bg-white p-8 rounded-3xl shadow-sm border border-slate-200">
               <div className="flex items-center gap-2 mb-6 text-rose-500">
                 <Heart size={22} />
-                <h2 className="text-xl font-bold text-slate-900">Recommended Responses</h2>
+                <h2 className="text-xl font-medium text-[#293E53]">Recommended Responses</h2>
               </div>
               <div className="grid grid-cols-1 gap-4">
                 {result.suggestions.map((item, idx) => (
@@ -224,7 +224,7 @@ const App = () => {
                   <span>Analyzing Cultural Nuance...</span>
                 </>
               ) : (
-                'Decode Interaction'
+                'Decode Interaction · 解読する'
               )}
             </button>
             {error && (

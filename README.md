@@ -1,16 +1,64 @@
-# React + Vite
+# Kizuna AI — Your Cultural Compass
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A cross-cultural communication tool powered by AI that decodes hidden meanings in high-context interactions, specializing in Japanese business culture.
 
-Currently, two official plugins are available:
+**Live Demo:** [https://kizuna-ai-app.onrender.com](https://kizuna-ai-app.onrender.com)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## What It Does
 
-## React Compiler
+Paste a phrase or describe an interaction from a high-context culture (Japan, Korea, China, etc.), and Kizuna AI will:
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- **Translate** the literal and hidden meaning
+- **Analyze** the cultural nuance and social hierarchy at play
+- **Rate confidence** with a transparent reasoning path (XAI)
+- **Suggest** two strategic responses — one to push forward, one to accept gracefully
 
-## Expanding the ESLint configuration
+## Tech Stack
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- **Frontend:** React + Tailwind CSS
+- **LLM:** GPT-5.4-mini via OpenAI-compatible API
+- **Server:** Express.js (API proxy keeps keys server-side)
+- **Prompt Design:** Chain-of-Thought with structured JSON output
+- **Deployment:** Render (Web Service)
+
+## Architecture
+
+```
+Browser  →  /api/chat/completions  →  Express Server (Render)
+                                          ├── Injects API key
+                                          ├── Proxies to LLM API
+                                          └── Serves static React build
+```
+
+## Local Development
+
+```bash
+# Install dependencies
+npm install
+
+# Create your environment file
+cp .env.example .env.local
+# Edit .env.local and add your API key
+
+# Start dev server
+npm run dev
+```
+
+## Environment Variables
+
+| Variable | Description |
+|---|---|
+| `VITE_KIZUNA_API_KEY` | API key for local development (used by Vite proxy) |
+| `KIZUNA_API_KEY` | API key for production (used by Express server on Render) |
+
+## Deployment
+
+Deployed on [Render](https://render.com) as a Web Service.
+
+- **Build command:** `npm install && npm run build`
+- **Start command:** `npm start`
+- **Environment variable:** Set `KIZUNA_API_KEY` in Render dashboard
+
+## License
+
+April Ma All Rights Reserved
