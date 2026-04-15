@@ -1,17 +1,40 @@
 # Kizuna AI — Your Cultural Compass
 
-A cross-cultural communication tool powered by AI that decodes hidden meanings in high-context interactions, specializing in Japanese business culture.
-
 **Live Demo:** [https://kizuna-ai-app.onrender.com](https://kizuna-ai-app.onrender.com)
+
+## About
+
+Kizuna AI is an AI-powered cultural intelligence tool designed for international professionals navigating high-context societies — particularly Japan, Korea, and China.
+
+In these cultures, what people say often differs from what they mean. A polite "I'll consider it" from a Japanese manager may actually be a soft refusal. A Chinese colleague's "It's not convenient" might be a firm no wrapped in courtesy. These unspoken rules — shaped by social hierarchy, face-saving, and indirect communication — are invisible to outsiders and rarely taught in textbooks.
+
+Kizuna bridges this gap. It acts as a real-time cultural interpreter that goes beyond literal translation to reveal the hidden intent, social dynamics, and emotional subtext behind everyday business interactions.
+
+## The Problem It Solves
+
+International professionals often misread high-context communication, leading to:
+
+- Missed signals in negotiations (e.g., interpreting a polite decline as genuine interest)
+- Damaged relationships from culturally inappropriate follow-ups
+- Lost deals and opportunities due to misaligned expectations
+
+Traditional translation tools handle words, not meaning. Kizuna handles both.
 
 ## What It Does
 
-Paste a phrase or describe an interaction from a high-context culture (Japan, Korea, China, etc.), and Kizuna AI will:
+Paste a phrase or describe an interaction, and Kizuna AI will:
 
-- **Translate** the literal and hidden meaning
-- **Analyze** the cultural nuance and social hierarchy at play
-- **Rate confidence** with a transparent reasoning path (XAI)
+- **Translate** both the literal words and the hidden cultural meaning
+- **Analyze** the social hierarchy, power dynamics, and unspoken intent at play
+- **Rate confidence** with a transparent reasoning path — making the AI's logic visible (Explainable AI)
 - **Suggest** two strategic responses — one to push forward, one to accept gracefully
+
+## Who It's For
+
+- Expats and international managers working in Japan, Korea, or China
+- Global business teams navigating cross-cultural negotiations
+- UX/AI researchers studying trust in human-AI interaction
+- Anyone who has ever wondered "what did they *really* mean?"
 
 ## Tech Stack
 
