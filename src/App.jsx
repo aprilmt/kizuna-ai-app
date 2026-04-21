@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import {
   MessageCircle,
   Info,
@@ -6,7 +6,13 @@ import {
   Heart,
   ChevronRight,
   Languages,
+  Mic,
+  MicOff,
 } from 'lucide-react';
+
+const SpeechRecognition = typeof window !== 'undefined'
+  ? window.SpeechRecognition || window.webkitSpeechRecognition
+  : null;
 
 const SYSTEM_PROMPT = `You are Kizuna AI, a cross-cultural communication analyst specializing in high-context societies (Japan, Korea, China, etc.).
 
@@ -22,7 +28,7 @@ When the user provides a phrase or interaction, you MUST reason step-by-step int
 ## Response Format
 Return ONLY valid JSON matching this exact schema. No markdown, no explanation outside the JSON:
 {
-  "translation": "English translation with original in parentheses",
+  "translation": "What the speaker actually means in plain English. Do NOT repeat the original input.",
   "literalMeaning": "What the words literally mean",
   "culturalNuance": "2-3 sentences explaining the hidden meaning in cultural context",
   "confidence": 85,
@@ -38,6 +44,45 @@ const App = () => {
   const [isAnalyzing, setIsAnalyzing] = useState(false);
   const [result, setResult] = useState(null);
   const [error, setError] = useState('');
+  const [isListening, setIsListening] = useState(false);
+  const recognitionRef = useRef(null);
+
+  const toggleListening = () => {
+    if (!SpeechRecognition) return;
+
+    if (isListening) {
+      recognitionRef.current?.stop();
+      setIsListening(false);
+      return;
+    }
+
+    const recognition = new SpeechRecognition();
+    recognition.lang = 'ja-JP';
+    recognition.interimResults = true;
+    recognition.continuous = true;
+    recognitionRef.current = recognition;
+
+    let finalTranscript = input;
+
+    recognition.onresult = (event) => {
+      let interim = '';
+      for (let i = event.resultIndex; i < event.results.length; i++) {
+        const transcript = event.results[i][0].transcript;
+        if (event.results[i].isFinal) {
+          finalTranscript += transcript;
+        } else {
+          interim += transcript;
+        }
+      }
+      setInput(finalTranscript + interim);
+    };
+
+    recognition.onerror = () => setIsListening(false);
+    recognition.onend = () => setIsListening(false);
+
+    recognition.start();
+    setIsListening(true);
+  };
 
   const handleAnalyze = async () => {
     if (!input.trim()) return;
@@ -181,10 +226,10 @@ const App = () => {
                     className="flex items-center justify-between p-5 bg-slate-50 rounded-2xl hover:bg-white hover:shadow-lg hover:border-[#293E53]/20 border border-transparent transition-all group text-left"
                   >
                     <div className="flex-1 pr-4">
-                      <span className="block text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1">
+                      <span className="block text-[10px] font-semibold text-slate-400 uppercase tracking-widest mb-1">
                         {item.label}
                       </span>
-                      <span className="text-base text-slate-700 font-medium">{item.text}</span>
+                      <span className="text-base text-slate-700 font-normal">{item.text}</span>
                     </div>
                     <ChevronRight size={20} className="text-slate-300 group-hover:text-[#293E53] transition-colors" />
                   </button>
@@ -200,19 +245,40 @@ const App = () => {
             <label className="text-sm font-bold uppercase tracking-widest">Input Context</label>
           </div>
           <div className="flex flex-col gap-4">
-            <textarea
-              className="w-full p-5 bg-slate-50 border border-slate-200 rounded-2xl focus:ring-2 focus:ring-[#293E53] focus:border-transparent outline-none transition-all text-slate-800 placeholder:text-slate-400 text-lg"
-              rows="3"
-              placeholder="e.g., My manager said 'わかりました、検討します。' What does it really mean?"
-              value={input}
-              onChange={(e) => setInput(e.target.value)}
-              onKeyDown={(e) => {
-                if (e.key === 'Enter' && !e.shiftKey && !isAnalyzing && input.trim()) {
-                  e.preventDefault();
-                  handleAnalyze();
-                }
-              }}
-            />
+            <div className="relative">
+              <textarea
+                className="w-full p-5 pr-14 bg-slate-50 border border-slate-200 rounded-2xl focus:ring-2 focus:ring-[#293E53] focus:border-transparent outline-none transition-all text-slate-800 placeholder:text-slate-400 text-lg"
+                rows="3"
+                placeholder="e.g., My manager said 'わかりました、検討します。' What does it really mean?"
+                value={input}
+                onChange={(e) => setInput(e.target.value)}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' && !e.shiftKey && !isAnalyzing && input.trim()) {
+                    e.preventDefault();
+                    handleAnalyze();
+                  }
+                }}
+              />
+              {SpeechRecognition && (
+                <button
+                  type="button"
+                  onClick={toggleListening}
+                  className={`absolute right-3 bottom-3 p-2 rounded-xl transition-all ${
+                    isListening
+                      ? 'bg-red-100 text-red-600 mic-pulse'
+                      : 'bg-[#293E53]/10 text-[#293E53] hover:bg-[#293E53]/20'
+                  }`}
+                  title={isListening ? 'Stop listening' : 'Voice input (Japanese)'}
+                >
+                  {isListening ? <MicOff size={20} /> : <Mic size={20} />}
+                </button>
+              )}
+              {isListening && (
+                <span className="absolute right-14 bottom-4 text-xs text-red-500 font-medium animate-pulse">
+                  Listening...
+                </span>
+              )}
+            </div>
             <button
               onClick={handleAnalyze}
               disabled={isAnalyzing || !input.trim()}
