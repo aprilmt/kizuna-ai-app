@@ -75,6 +75,8 @@ npm run dev
 |---|---|
 | `VITE_KIZUNA_API_KEY` | API key for local development (used by Vite proxy) |
 | `KIZUNA_API_KEY` | API key for production (used by Express server on Render) |
+| `DEMO_PASSWORD` | Password for the live demo gate (unset = no password page) |
+| `DEMO_AUTH_SECRET` | Optional secret used to sign the demo auth cookie |
 
 ## Deployment
 
@@ -82,7 +84,8 @@ Deployed on [Render](https://render.com) as a Web Service.
 
 - **Build command:** `npm install && npm run build`
 - **Start command:** `npm start`
-- **Environment variable:** Set `KIZUNA_API_KEY` in Render dashboard
+- **Environment variables:** Set `KIZUNA_API_KEY` and `DEMO_PASSWORD` in the Render dashboard
+- **Health check path:** `/health` (bypasses the password gate)
 
 ## License
 
