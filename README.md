@@ -1,6 +1,7 @@
 # Kizuna AI — Your Cultural Compass
 
 **Live Demo:** [https://kizuna-ai-app.onrender.com](https://kizuna-ai-app.onrender.com)
+(Password-protected due to LLM usage — please reach out for access)
 
 ## About
 
