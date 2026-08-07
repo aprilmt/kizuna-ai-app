@@ -34,7 +34,7 @@ Paste a phrase or describe an interaction, and Kizuna AI will:
 
 ## Who It's For
 
-- Expats and international managers working in Japan, Korea, or China
+- Expats and international workers/students in Japan, Korea, or China
 - Global business teams navigating cross-cultural negotiations
 - UX/AI researchers studying trust in human-AI interaction
 - Anyone who has ever wondered "what did they *really* mean?"
