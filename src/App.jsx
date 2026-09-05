@@ -515,10 +515,10 @@ const App = () => {
                       {msg.analysis?.type === 'analysis' ? (
                         <>
                           <div className="flex items-center gap-2 text-[#293E53]">
-                            <div className="p-2 bg-[#293E53]/10 rounded-xl">
-                              <MessageCircle size={18} />
+                            <div className="p-2 bg-[#293E53]/10 rounded-xl inline-flex items-center justify-center">
+                              <SolidIcon src="/icons/user-question.png" size={18} />
                             </div>
-                            <h3 className="text-base font-bold text-slate-950">The Hidden Meaning</h3>
+                            <h3 className="text-base font-bold text-slate-500">The Hidden Meaning</h3>
                           </div>
                           <div>
                             <p className="text-xl font-semibold text-[#293E53]">
