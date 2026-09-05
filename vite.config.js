@@ -19,6 +19,13 @@ export default defineConfig(({ mode }) => {
                 proxyReq.setHeader('Authorization', `Bearer ${env.VITE_KIZUNA_API_KEY}`)
               }
             })
+            proxy.on('error', (err, _req, res) => {
+              console.error('LLM proxy error:', err.message)
+              if (res && !res.headersSent) {
+                res.writeHead(502, { 'Content-Type': 'application/json' })
+                res.end(JSON.stringify({ error: 'Failed to reach upstream API.' }))
+              }
+            })
           },
         },
       },

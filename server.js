@@ -320,6 +320,24 @@ app.use((req, res, next) => {
 
 app.use(express.static(join(__dirname, 'dist')));
 
+async function fetchUpstreamWithBackoff(url, options, { retries = 3, baseDelayMs = 500 } = {}) {
+  let lastError;
+  for (let attempt = 0; attempt <= retries; attempt++) {
+    try {
+      const response = await fetch(url, options);
+      if (response.ok || (response.status < 500 && response.status !== 429) || attempt === retries) {
+        return response;
+      }
+      lastError = new Error(`Transient upstream error ${response.status}`);
+    } catch (err) {
+      lastError = err;
+      if (attempt === retries) break;
+    }
+    await new Promise((resolve) => setTimeout(resolve, baseDelayMs * 2 ** attempt));
+  }
+  throw lastError instanceof Error ? lastError : new Error('Upstream request failed after retries.');
+}
+
 app.post('/api/chat/completions', async (req, res) => {
   const apiKey = process.env.KIZUNA_API_KEY;
   if (!apiKey) {
@@ -327,14 +345,17 @@ app.post('/api/chat/completions', async (req, res) => {
   }
 
   try {
-    const upstream = await fetch('https://api.zhizengzeng.com/v1/chat/completions', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${apiKey}`,
+    const upstream = await fetchUpstreamWithBackoff(
+      'https://api.zhizengzeng.com/v1/chat/completions',
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${apiKey}`,
+        },
+        body: JSON.stringify(req.body),
       },
-      body: JSON.stringify(req.body),
-    });
+    );
 
     const data = await upstream.json();
     res.status(upstream.status).json(data);
