@@ -38,6 +38,26 @@ function SolidIcon({ src, size = 20, className = '' }) {
   );
 }
 
+function LightbulbDuotone({ size = 18, className = '' }) {
+  return (
+    <svg
+      aria-hidden
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 384 512"
+      width={size}
+      height={size}
+      className={`shrink-0 ${className}`}
+      fill="currentColor"
+    >
+      <path
+        opacity="0.4"
+        d="M272 384c9.6-31.9 29.5-59.1 49.2-86.2c5.2-7.1 10.4-14.2 15.4-21.4c19.8-28.5 31.4-63 31.4-100.3C368 78.8 289.2 0 192 0S16 78.8 16 176c0 37.3 11.6 71.9 31.4 100.3c5 7.2 10.2 14.3 15.4 21.4c19.8 27.1 39.7 54.4 49.2 86.2H272z"
+      />
+      <path d="M192 512c44.2 0 80-35.8 80-80v-16H112v16c0 44.2 35.8 80 80 80zM112 176c0 8.8-7.2 16-16 16s-16-7.2-16-16c0-61.9 50.1-112 112-112c8.8 0 16 7.2 16 16s-7.2 16-16 16c-44.2 0-80 35.8-80 80z" />
+    </svg>
+  );
+}
+
 const SYSTEM_PROMPT = `You are Kizuna AI, a cross-cultural communication analyst specializing in high-context societies (Japan, Korea, China, etc.).
 
 ## Your Analysis Method (Chain-of-Thought)
@@ -47,7 +67,8 @@ When the user provides a phrase or interaction, you MUST reason step-by-step int
 3. **Social Hierarchy Analysis**: Consider the power dynamic (e.g., manager → subordinate, client → vendor) and how it shapes meaning.
 4. **Hidden Intent Detection**: In high-context cultures, what is the speaker *actually* communicating? Identify the gap between literal words and true intent.
 5. **Confidence Assessment**: Rate your confidence (1-100) based on how well-documented this pattern is in sociolinguistic research.
-6. **Actionable Advice**: Provide exactly two strategic suggestions—one for pushing forward, one for accepting gracefully.
+6. **Situation Framing**: Based on the user's prompt, describe a realistic situation where someone would encounter this interaction, and outline possible response methods (tones/postures) that fit that context.
+7. **Actionable Advice**: Provide exactly two strategic suggestions—one for pushing forward, one for accepting gracefully.
 
 ## Response Format
 Return ONLY valid JSON matching this exact schema. No markdown, no explanation outside the JSON:
@@ -55,6 +76,7 @@ Return ONLY valid JSON matching this exact schema. No markdown, no explanation o
   "translation": "What the speaker actually means in plain English. Do NOT repeat the original input.",
   "literalMeaning": "What the words literally mean",
   "culturalNuance": "2-3 sentences explaining the hidden meaning in cultural context",
+  "possibleResponseMethods": "2-4 sentences. First explain a realistic situation (based on the user's prompt) where this interaction often appears. Then briefly name possible response methods/postures someone could take in that situation (e.g., soft clarification, graceful exit, relationship-preserving follow-up).",
   "confidence": 85,
   "reasoning": "1-2 sentences explaining your reasoning path and what data supports your interpretation",
   "suggestions": [
@@ -103,7 +125,7 @@ async function callKizunaApi(messages) {
     body: JSON.stringify({
       model: 'gpt-4o',
       temperature: 0.3,
-      max_tokens: 1024,
+      max_tokens: 1400,
       messages,
     }),
   });
@@ -145,6 +167,9 @@ function parseAnalysis(parsed) {
     translation: parsed.translation || 'No translation provided.',
     literalMeaning: parsed.literalMeaning || 'No literal meaning provided.',
     culturalNuance: parsed.culturalNuance || 'No cultural nuance provided.',
+    possibleResponseMethods:
+      parsed.possibleResponseMethods ||
+      'Based on your prompt, this kind of exchange often appears in hierarchical or relationship-sensitive settings. Possible response methods include clarifying gently, accepting the cue and pausing, or preserving face while leaving room for a later follow-up.',
     confidence: Number.isFinite(parsed.confidence)
       ? Math.min(100, Math.max(1, Math.round(parsed.confidence)))
       : 50,
@@ -200,6 +225,7 @@ const buildIssueUrl = ({ confidence, analysis }) => {
       `- Translation: ${analysis.translation || ''}`,
       `- Literal meaning: ${analysis.literalMeaning || ''}`,
       `- Cultural nuance: ${analysis.culturalNuance || ''}`,
+      `- Possible response methods: ${analysis.possibleResponseMethods || ''}`,
       `- Reasoning: ${analysis.reasoning || ''}`,
     );
   } else if (analysis?.type === 'followup') {
@@ -266,7 +292,7 @@ const ConfidenceMeter = ({ confidence, analysis }) => (
 );
 
 const ReasoningLogic = ({ reasoning }) => (
-  <div className="bg-white/80 border border-slate-200 rounded-[2.5rem] p-5">
+  <div className="bg-white/80 border border-slate-200 rounded-[2.5rem] p-5 h-full min-w-0">
     <div className="flex items-center gap-2 mb-3 text-[#293E53]">
       <Info size={18} />
       <span className="text-xs font-semibold uppercase tracking-widest">Reasoning Logic</span>
@@ -393,6 +419,7 @@ const App = () => {
               translation: msg.analysis.translation,
               literalMeaning: msg.analysis.literalMeaning,
               culturalNuance: msg.analysis.culturalNuance,
+              possibleResponseMethods: msg.analysis.possibleResponseMethods,
               confidence: msg.analysis.confidence,
               reasoning: msg.analysis.reasoning,
               suggestions: msg.analysis.suggestions,
@@ -446,14 +473,14 @@ const App = () => {
 
   return (
     <div className="min-h-screen bg-[#F8FAFC] flex flex-col items-center p-6 sm:p-12 text-slate-900">
-      <header className="w-full max-w-2xl mb-8 text-center">
+      <header className="w-full max-w-4xl mb-8 text-center">
         <img src="/logo.png" alt="Kizuna AI" className="w-20 h-20 mx-auto mb-3 object-contain" />
         <h1 className="text-3xl font-medium tracking-tight text-[#293E53]">Kizuna: Your Cultural Compass</h1>
         <p className="text-slate-500 text-base mt-2">Defining the UX Layer of Cultural Intelligence</p>
         <p className="text-slate-400 text-sm mt-1">絆AI — 文化的知性のインタラクション・レイヤー</p>
       </header>
 
-      <main className="w-full max-w-2xl space-y-6">
+      <main className="w-full max-w-4xl space-y-6">
         {inConversation ? (
           <section className="bg-white rounded-[2.5rem] shadow-md border border-slate-200 overflow-hidden animate-in fade-in slide-in-from-bottom-6 duration-700">
             <div className="flex items-center justify-between px-6 sm:px-8 py-5 border-b border-slate-100">
@@ -521,7 +548,7 @@ const App = () => {
                         </>
                       )}
 
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                      <div className="grid grid-cols-1 md:grid-cols-[16rem_minmax(0,1fr)] gap-3">
                         <ConfidenceMeter
                           confidence={msg.analysis?.confidence ?? 50}
                           analysis={msg.analysis}
@@ -529,10 +556,26 @@ const App = () => {
                         <ReasoningLogic reasoning={msg.analysis?.reasoning ?? ''} />
                       </div>
 
+                      {msg.analysis?.type === 'analysis' && msg.analysis.possibleResponseMethods && (
+                        <div className="space-y-3 pt-1">
+                          <div className="flex items-center gap-2 text-[#293E53]">
+                            <LightbulbDuotone size={18} />
+                            <span className="text-sm font-medium text-[#293E53]">
+                              Possible response methods
+                            </span>
+                          </div>
+                          <div className="bg-white p-4 rounded-2xl border border-slate-200">
+                            <p className="text-sm text-slate-700 leading-relaxed">
+                              {msg.analysis.possibleResponseMethods}
+                            </p>
+                          </div>
+                        </div>
+                      )}
+
                       {msg.analysis?.suggestions?.length > 0 && (
                         <div className="space-y-3 pt-1">
-                          <div className="flex items-center gap-2 text-rose-500">
-                            <Heart size={18} />
+                          <div className="flex items-center gap-2 text-[#F69C91]">
+                            <Heart size={18} fill="#F69C91" stroke="#F69C91" />
                             <span className="text-sm font-medium text-[#293E53]">
                               Recommended Responses
                             </span>
