@@ -11,7 +11,7 @@ In these cultures, what people say often differs from what they mean. A polite "
 
 Kizuna bridges this gap. It acts as a real-time cultural interpreter that goes beyond literal translation to reveal the hidden intent, social dynamics, and emotional subtext behind everyday business interactions.
 
-<img width="802" height="883" alt="kizuna-preview" src="https://github.com/user-attachments/assets/f21e63e6-7d51-4c4e-8edc-246aca328dfa" />
+<img width="932" height="883" alt="kizuna-preview" src="https://github.com/user-attachments/assets/103d9724-f2b0-4abf-adf5-703c9558a39d" />
 
 
 ## The Problem It Solves
