@@ -1,4 +1,4 @@
-# Kizuna AI — Your Cultural Compass
+# Kizuna AI — Your Cultural Compass(MVP)
 
 **Live Demo:** [https://kizuna-ai-app.onrender.com](https://kizuna-ai-app.onrender.com)
 (Password-protected due to LLM usage — please reach out for access)
@@ -11,7 +11,7 @@ In these cultures, what people say often differs from what they mean. A polite "
 
 Kizuna bridges this gap. It acts as a real-time cultural interpreter that goes beyond literal translation to reveal the hidden intent, social dynamics, and emotional subtext behind everyday business interactions.
 
-<img width="708" height="881" alt="kizuna-preview" src="https://github.com/user-attachments/assets/d465f1d1-5d0b-403b-b308-74bf044c8dff" />
+<img width="802" height="883" alt="kizuna-preview" src="https://github.com/user-attachments/assets/f21e63e6-7d51-4c4e-8edc-246aca328dfa" />
 
 
 ## The Problem It Solves
