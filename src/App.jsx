@@ -244,7 +244,7 @@ const buildIssueUrl = ({ confidence, analysis }) => {
 };
 
 const ConfidenceMeter = ({ confidence, analysis }) => (
-  <div className="bg-white/80 border border-slate-200 rounded-[2.5rem] p-5 h-full flex flex-col">
+  <div className="bg-white/80 border border-slate-200 rounded-2xl p-5 h-full flex flex-col">
     <div className="flex items-center gap-2 mb-3 text-emerald-600">
       <ShieldCheck size={18} />
       <span className="text-xs font-semibold uppercase tracking-widest">AI Confidence</span>
@@ -292,7 +292,7 @@ const ConfidenceMeter = ({ confidence, analysis }) => (
 );
 
 const ReasoningLogic = ({ reasoning }) => (
-  <div className="bg-white/80 border border-slate-200 rounded-[2.5rem] p-5 h-full min-w-0">
+  <div className="bg-white/80 border border-slate-200 rounded-2xl p-5 h-full min-w-0">
     <div className="flex items-center gap-2 mb-3 text-[#293E53]">
       <Info size={18} />
       <span className="text-xs font-semibold uppercase tracking-widest">Reasoning Logic</span>
