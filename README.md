@@ -88,6 +88,10 @@ Deployed on [Render](https://render.com) as a Web Service.
 - **Environment variables:** Set `KIZUNA_API_KEY` and `DEMO_PASSWORD` in the Render dashboard
 - **Health check path:** `/health` (bypasses the password gate)
 
+## UI Style Guide
+<img width="794" height="544" alt="kizuna-ui-kit" src="https://github.com/user-attachments/assets/056ed069-e23c-433d-a6d2-f701aab2adfa" />
+
+
 ## License
 
 April Ma All Rights Reserved
