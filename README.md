@@ -89,7 +89,7 @@ Deployed on [Render](https://render.com) as a Web Service.
 - **Health check path:** `/health` (bypasses the password gate)
 
 ## UI Style Guide
-<img width="794" height="544" alt="kizuna-ui-kit" src="https://github.com/user-attachments/assets/f98e5366-cdd1-4371-ba96-be4d8ff45153" />
+<img width="794" height="544" alt="kizuna-ui-kit" src="https://github.com/user-attachments/assets/f8e7078a-1a85-4e49-84bf-d6f6527f2e25" />
 
 
 ## License
