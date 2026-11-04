@@ -244,47 +244,49 @@ const buildIssueUrl = ({ confidence, analysis }) => {
 };
 
 const ConfidenceMeter = ({ confidence, analysis }) => (
-  <div className="bg-white/80 border border-slate-200 rounded-2xl p-5 h-full flex flex-col">
-    <div className="flex items-center gap-2 mb-3 text-emerald-600">
-      <ShieldCheck size={18} />
-      <span className="text-xs font-semibold uppercase tracking-widest">AI Confidence</span>
+  <div className="bg-white border border-slate-200 rounded-2xl p-5 h-full flex flex-col">
+    <div className="flex items-center gap-2 mb-4 text-[#10B981]">
+      <ShieldCheck size={16} strokeWidth={1.75} />
+      <span className="text-[13px] font-medium text-[#293E53]">AI confidence</span>
     </div>
     <div className="flex items-end gap-3">
-      <span className="text-3xl font-semibold text-[#293E53]">{confidence}%</span>
-      <div className="flex-1 h-3 bg-slate-100 rounded-full mb-2 overflow-hidden">
+      <span className="text-3xl font-semibold tracking-tight text-[#293E53] leading-none">
+        {confidence}%
+      </span>
+      <div className="flex-1 h-2.5 bg-[#F8FAFC] rounded-full mb-1 overflow-hidden">
         <div
-          className="h-full bg-emerald-500 rounded-full transition-all duration-1000 ease-out"
+          className="h-full bg-[#10B981] rounded-full transition-all duration-1000 ease-out"
           style={{ width: `${confidence}%` }}
         />
       </div>
     </div>
-    <p className="text-[10px] text-slate-500 mt-2 font-semibold tracking-tight">
-      Model: GPT-4o · Chain-of-Thought
+    <p className="text-[11px] text-[#64748B] mt-3 leading-relaxed">
+      GPT-4o · chain-of-thought
     </p>
-    <div className="mt-auto pt-6 flex items-center gap-3">
+    <div className="mt-auto pt-5 flex items-center gap-3">
       <a
         href={buildIssueUrl({ confidence, analysis })}
         target="_blank"
         rel="noopener noreferrer"
-        className="inline-flex items-center justify-center gap-1.5 px-2.5 py-1.5 rounded-md border border-[#F69C91] text-[#F69C91] text-[11px] font-normal leading-none tracking-wide hover:bg-[#F69C91]/10 transition-colors"
+        className="inline-flex items-center justify-center gap-1.5 px-2.5 py-1.5 rounded-lg text-[#F69C91] text-[12px] font-medium leading-none hover:bg-[#F69C91]/10 transition-colors"
       >
         <Flag size={12} strokeWidth={1.75} />
         Report issue
       </a>
-      <div className="flex items-center gap-2 text-[#293E53]">
+      <div className="flex items-center gap-1.5 text-[#293E53]">
         <button
           type="button"
           aria-label="Thumbs up"
-          className="p-1 hover:text-emerald-600 transition-colors"
+          className="p-1.5 rounded-lg hover:bg-[#F8FAFC] hover:text-[#10B981] transition-colors"
         >
-          <ThumbsUp size={16} strokeWidth={1.75} />
+          <ThumbsUp size={15} strokeWidth={1.75} />
         </button>
         <button
           type="button"
           aria-label="Thumbs down"
-          className="p-1 hover:text-[#F69C91] transition-colors"
+          className="p-1.5 rounded-lg hover:bg-[#F8FAFC] hover:text-[#F69C91] transition-colors"
         >
-          <ThumbsDown size={16} strokeWidth={1.75} />
+          <ThumbsDown size={15} strokeWidth={1.75} />
         </button>
       </div>
     </div>
@@ -292,12 +294,12 @@ const ConfidenceMeter = ({ confidence, analysis }) => (
 );
 
 const ReasoningLogic = ({ reasoning }) => (
-  <div className="bg-white/80 border border-slate-200 rounded-2xl p-5 h-full min-w-0">
+  <div className="bg-white border border-slate-200 rounded-2xl p-5 h-full min-w-0">
     <div className="flex items-center gap-2 mb-3 text-[#293E53]">
-      <Info size={18} />
-      <span className="text-xs font-semibold uppercase tracking-widest">Reasoning Logic</span>
+      <Info size={16} strokeWidth={1.75} />
+      <span className="text-[13px] font-medium">Reasoning logic</span>
     </div>
-    <p className="text-sm text-slate-600 italic leading-snug">&ldquo;{reasoning}&rdquo;</p>
+    <p className="text-[14px] text-[#475569] leading-relaxed">&ldquo;{reasoning}&rdquo;</p>
   </div>
 );
 
@@ -472,77 +474,85 @@ const App = () => {
   const inConversation = messages.length > 0;
 
   return (
-    <div className="min-h-screen bg-[#F8FAFC] flex flex-col items-center p-6 sm:p-12 text-slate-900">
-      <header className="w-full max-w-4xl mb-8 text-center">
-        <img src="/logo.png" alt="Kizuna AI" className="w-20 h-20 mx-auto mb-3 object-contain" />
-        <h1 className="text-3xl font-medium tracking-tight text-[#293E53]">Kizuna: Your Cultural Compass</h1>
-        <p className="text-slate-500 text-base mt-2">Defining the UX Layer of Cultural Intelligence</p>
-        <p className="text-slate-400 text-sm mt-1">絆AI — 文化的知性のインタラクション・レイヤー</p>
+    <div className="min-h-screen bg-[#EEF2F6] flex flex-col items-center px-5 py-8 sm:px-10 sm:py-14 text-[#0F172A]">
+      <header className="w-full max-w-4xl mb-8 flex flex-col items-center text-center">
+        <img
+          src="/logo.png"
+          alt="Kizuna AI"
+          className="w-20 h-20 mb-3 object-contain bg-[#F8FAFC] rounded-2xl p-2"
+        />
+        <h1 className="text-3xl font-medium tracking-tight text-[#293E53]">
+          Kizuna: Your Cultural Compass
+        </h1>
+        <p className="text-slate-500 text-base mt-2">
+          Defining the UX Layer of Cultural Intelligence
+        </p>
+        <p className="text-slate-400 text-sm mt-1">
+          絆AI — 文化的知性のインタラクション・レイヤー
+        </p>
       </header>
 
-      <main className="w-full max-w-4xl space-y-6">
+      <main className="w-full max-w-4xl space-y-8">
         {inConversation ? (
-          <section className="bg-white rounded-[2.5rem] shadow-md border border-slate-200 overflow-hidden animate-in fade-in slide-in-from-bottom-6 duration-700">
-            <div className="flex items-center justify-between px-6 sm:px-8 py-5 border-b border-slate-100">
-              <div className="flex items-center gap-2 text-[#293E53]">
-                <MessageCircle size={20} />
-                <h2 className="text-lg font-bold text-slate-950">Conversation</h2>
+          <section className="bg-white rounded-[2.5rem] shadow-[0_18px_50px_rgba(15,23,42,0.08)] overflow-hidden animate-in fade-in slide-in-from-bottom-6 duration-700">
+            <div className="flex items-center justify-between px-6 sm:px-8 py-5">
+              <div className="flex items-center gap-2.5 text-[#293E53]">
+                <MessageCircle size={18} strokeWidth={1.75} />
+                <h2 className="text-[15px] font-bold text-slate-950">Conversation</h2>
               </div>
               <button
                 type="button"
                 onClick={handleReset}
-                className="inline-flex items-center gap-2 text-sm text-slate-500 hover:text-[#293E53] transition-colors"
+                className="inline-flex items-center gap-2 text-[13px] text-[#64748B] hover:text-[#293E53] transition-colors"
               >
-                <RotateCcw size={16} />
+                <RotateCcw size={15} strokeWidth={1.75} />
                 New chat
               </button>
             </div>
 
-            <div ref={threadRef} className="max-h-[62vh] overflow-y-auto px-6 sm:px-8 py-6 space-y-5">
+            <div ref={threadRef} className="max-h-[62vh] overflow-y-auto px-6 sm:px-8 pb-6 space-y-6">
               {messages.map((msg) =>
                 msg.role === 'user' ? (
                   <div key={msg.id} className="flex justify-end">
-                    <div className="max-w-[85%] bg-[#293E53] text-white px-5 py-4 rounded-[2.5rem] rounded-br-xl shadow-sm">
-                      <p className="text-[10px] uppercase tracking-widest text-white/60 mb-1 font-semibold">
-                        Your prompt
-                      </p>
-                      <p className="text-base leading-relaxed whitespace-pre-wrap">{msg.text}</p>
+                    <div className="max-w-[85%] bg-[#293E53] text-white px-5 py-4 rounded-[2.5rem] rounded-br-2xl">
+                      <p className="text-[12px] text-white/55 mb-1.5 font-medium">Your prompt</p>
+                      <p className="text-[15px] leading-relaxed whitespace-pre-wrap">{msg.text}</p>
                     </div>
                   </div>
                 ) : (
                   <div key={msg.id} className="flex justify-start">
-                    <div className="max-w-[95%] w-full bg-slate-50 border border-slate-200 px-5 py-5 rounded-[2.5rem] rounded-bl-xl space-y-4">
+                    <div className="max-w-[95%] w-full bg-white border border-slate-200 px-5 py-5 rounded-[2.5rem] rounded-bl-2xl space-y-5">
                       {msg.analysis?.type === 'analysis' ? (
                         <>
-                          <div className="flex items-center gap-2 text-[#293E53]">
-                            <div className="p-2 bg-[#293E53]/10 rounded-xl inline-flex items-center justify-center">
-                              <SolidIcon src="/icons/user-question.png" size={18} />
+                          <div className="flex items-center gap-2.5 text-[#293E53]">
+                            <div className="w-8 h-8 bg-[#F8FAFC] rounded-xl inline-flex items-center justify-center text-[#293E53]">
+                              <SolidIcon src="/icons/user-question.png" size={16} />
                             </div>
-                            <h3 className="text-base font-bold text-slate-500">The Hidden Meaning</h3>
+                            <h3 className="text-[13px] font-medium text-[#64748B]">Hidden meaning</h3>
                           </div>
                           <div>
-                            <p className="text-xl font-semibold text-[#293E53]">
+                            <p className="text-[1.35rem] font-semibold tracking-tight text-[#293E53] leading-snug">
                               &ldquo;{msg.analysis.translation}&rdquo;
                             </p>
-                            <p className="text-sm text-slate-400 italic mt-1">
+                            <p className="text-[13px] text-[#94A3B8] mt-2 leading-relaxed">
                               {msg.analysis.literalMeaning}
                             </p>
                           </div>
-                          <div className="bg-white p-4 rounded-2xl border border-[#293E53]/10">
-                            <p className="text-slate-700 leading-relaxed">
+                          <div className="bg-[#F8FAFC] p-4 rounded-2xl">
+                            <p className="text-[14px] text-[#334155] leading-relaxed">
                               {msg.analysis.culturalNuance}
                             </p>
                           </div>
                         </>
                       ) : (
                         <>
-                          <div className="flex items-center gap-2 text-[#293E53]">
-                            <div className="p-2 bg-[#293E53]/10 rounded-xl">
-                              <MessageCircle size={18} />
+                          <div className="flex items-center gap-2.5 text-[#293E53]">
+                            <div className="w-8 h-8 bg-[#F8FAFC] rounded-xl inline-flex items-center justify-center">
+                              <MessageCircle size={16} strokeWidth={1.75} />
                             </div>
-                            <h3 className="text-base font-bold text-slate-950">Kizuna</h3>
+                            <h3 className="text-[13px] font-medium text-[#64748B]">Kizuna</h3>
                           </div>
-                          <p className="text-slate-700 leading-relaxed whitespace-pre-wrap">
+                          <p className="text-[15px] text-[#334155] leading-relaxed whitespace-pre-wrap">
                             {msg.analysis?.reply}
                           </p>
                         </>
@@ -557,15 +567,13 @@ const App = () => {
                       </div>
 
                       {msg.analysis?.type === 'analysis' && msg.analysis.possibleResponseMethods && (
-                        <div className="space-y-3 pt-1">
+                        <div className="space-y-2.5 pt-1">
                           <div className="flex items-center gap-2 text-[#293E53]">
-                            <LightbulbDuotone size={18} />
-                            <span className="text-sm font-medium text-[#293E53]">
-                              Possible response methods
-                            </span>
+                            <LightbulbDuotone size={16} />
+                            <span className="text-[13px] font-medium">Possible response methods</span>
                           </div>
-                          <div className="bg-white p-4 rounded-2xl border border-slate-200">
-                            <p className="text-sm text-slate-700 leading-relaxed">
+                          <div className="bg-[#F8FAFC] p-4 rounded-2xl">
+                            <p className="text-[14px] text-[#334155] leading-relaxed">
                               {msg.analysis.possibleResponseMethods}
                             </p>
                           </div>
@@ -573,11 +581,11 @@ const App = () => {
                       )}
 
                       {msg.analysis?.suggestions?.length > 0 && (
-                        <div className="space-y-3 pt-1">
+                        <div className="space-y-2.5 pt-1">
                           <div className="flex items-center gap-2 text-[#F69C91]">
-                            <Heart size={18} fill="#F69C91" stroke="#F69C91" />
-                            <span className="text-sm font-medium text-[#293E53]">
-                              Recommended Responses
+                            <Heart size={16} fill="#F69C91" stroke="#F69C91" />
+                            <span className="text-[13px] font-medium text-[#293E53]">
+                              Recommended responses
                             </span>
                           </div>
                           {msg.analysis.suggestions.map((item, idx) => (
@@ -585,17 +593,20 @@ const App = () => {
                               key={idx}
                               type="button"
                               onClick={() => setFollowUp(item.text)}
-                              className="w-full flex items-center justify-between p-4 bg-white rounded-2xl hover:shadow-md hover:border-[#293E53]/20 border border-transparent transition-all group text-left"
+                              className="w-full flex items-center justify-between gap-3 p-4 bg-[#F8FAFC] rounded-2xl hover:bg-slate-100 transition-colors group text-left"
                             >
-                              <div className="flex-1 pr-3">
-                                <span className="block text-[10px] font-semibold text-slate-400 uppercase tracking-widest mb-1">
+                              <div className="flex-1 min-w-0">
+                                <span className="block text-[12px] font-medium text-[#94A3B8] mb-1">
                                   {item.label}
                                 </span>
-                                <span className="text-sm text-slate-700">{item.text}</span>
+                                <span className="text-[14px] text-[#334155] leading-relaxed">
+                                  {item.text}
+                                </span>
                               </div>
                               <ChevronRight
-                                size={18}
-                                className="text-slate-300 group-hover:text-[#293E53] transition-colors"
+                                size={16}
+                                strokeWidth={1.75}
+                                className="shrink-0 text-[#CBD5E1] group-hover:text-[#293E53] transition-colors"
                               />
                             </button>
                           ))}
@@ -608,26 +619,24 @@ const App = () => {
 
               {isAnalyzing && (
                 <div className="flex justify-start">
-                  <div className="bg-slate-50 border border-slate-200 px-5 py-4 rounded-[2.5rem] rounded-bl-xl inline-flex items-center gap-3 text-slate-500">
-                    <div className="w-4 h-4 border-2 border-slate-300 border-t-[#293E53] rounded-full animate-spin" />
-                    <span className="text-sm">Thinking through cultural nuance...</span>
+                  <div className="bg-white border border-slate-200 px-5 py-4 rounded-[2.5rem] rounded-bl-2xl inline-flex items-center gap-3 text-[#64748B]">
+                    <div className="w-4 h-4 border-2 border-[#CBD5E1] border-t-[#293E53] rounded-full animate-spin" />
+                    <span className="text-[14px]">Thinking through cultural nuance…</span>
                   </div>
                 </div>
               )}
             </div>
 
-            <div className="border-t border-slate-100 px-6 sm:px-8 py-5 bg-slate-50/80">
+            <div className="px-6 sm:px-8 py-5 bg-[#F8FAFC]">
               <div className="flex items-center gap-2 mb-3 text-[#293E53]">
-                <Languages size={16} />
-                <label className="text-xs font-bold uppercase tracking-widest">
-                  Ask a follow-up question
-                </label>
+                <Languages size={15} strokeWidth={1.75} />
+                <label className="text-[13px] font-medium">Ask a follow-up</label>
               </div>
               <div className="relative">
                 <textarea
-                  className="w-full p-4 pr-28 bg-white border border-slate-200 rounded-[2.5rem] focus:ring-2 focus:ring-[#293E53] focus:border-transparent outline-none transition-all text-slate-800 placeholder:text-slate-400 text-base resize-none"
+                  className="w-full p-4 pr-[6.5rem] bg-white rounded-[2.5rem] outline-none transition-shadow text-[#0F172A] placeholder:text-[#94A3B8] text-[15px] resize-none shadow-[inset_0_0_0_1px_#E2E8F0] focus:shadow-[inset_0_0_0_1.5px_#293E53]"
                   rows="2"
-                  placeholder="e.g., How should I reply in a meeting? What if they are my client?"
+                  placeholder="How should I reply in a meeting?"
                   value={followUp}
                   onChange={(e) => setFollowUp(e.target.value)}
                   onKeyDown={(e) => {
@@ -671,24 +680,24 @@ const App = () => {
                 </div>
               </div>
               {error && (
-                <p className="mt-3 text-sm text-red-600 bg-red-50 border border-red-200 rounded-xl p-3">
+                <p className="mt-3 text-[13px] text-red-600 bg-red-50 rounded-xl px-3 py-2.5">
                   {error}
                 </p>
               )}
             </div>
           </section>
         ) : (
-          <section className="bg-white p-8 rounded-[2.5rem] shadow-sm border border-slate-200 ring-1 ring-slate-100">
+          <section className="bg-white p-7 sm:p-9 rounded-[2.5rem] shadow-[0_18px_50px_rgba(15,23,42,0.08)]">
             <div className="flex items-center gap-2 mb-4 text-[#293E53]">
-              <Languages size={18} />
-              <label className="text-sm font-bold uppercase tracking-widest">Start a conversation</label>
+              <Languages size={16} strokeWidth={1.75} />
+              <label className="text-[13px] font-medium">Start a conversation</label>
             </div>
-            <div className="flex flex-col gap-4">
+            <div className="flex flex-col gap-3">
               <div className="relative">
                 <textarea
-                  className="w-full p-5 pr-14 bg-slate-50 border border-slate-200 rounded-[2.5rem] focus:ring-2 focus:ring-[#293E53] focus:border-transparent outline-none transition-all text-slate-800 placeholder:text-slate-400 text-lg"
+                  className="w-full p-5 pr-14 bg-[#F8FAFC] rounded-[2.5rem] outline-none transition-shadow text-[#0F172A] placeholder:text-[#94A3B8] text-[16px] leading-relaxed resize-none focus:shadow-[inset_0_0_0_1.5px_#293E53]"
                   rows="3"
-                  placeholder="e.g., My manager said 'わかりました、検討します。' What does it really mean?"
+                  placeholder="My manager said 'わかりました、検討します。' What does it really mean?"
                   value={input}
                   onChange={(e) => setInput(e.target.value)}
                   onKeyDown={(e) => {
@@ -720,27 +729,27 @@ const App = () => {
                   </button>
                 )}
                 {isListening && (
-                  <span className="absolute right-14 bottom-4 text-xs text-red-500 font-medium animate-pulse">
-                    Listening...
+                  <span className="absolute right-14 bottom-5 text-[12px] text-red-500 font-medium">
+                    Listening…
                   </span>
                 )}
               </div>
               <button
                 onClick={handleAnalyze}
                 disabled={isAnalyzing || !input.trim()}
-                className="w-full py-4 bg-[#293E53] hover:bg-[#1e2f40] disabled:bg-slate-300 text-white font-bold rounded-[2.5rem] shadow-lg shadow-[#293E53]/20 transition-all active:scale-[0.98] flex items-center justify-center gap-3"
+                className="w-full py-3.5 bg-[#293E53] hover:bg-[#1e2f40] disabled:bg-[#CBD5E1] text-white font-semibold rounded-[2.5rem] transition-colors active:scale-[0.98] flex items-center justify-center gap-3 text-[15px]"
               >
                 {isAnalyzing ? (
                   <>
-                    <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
-                    <span>Analyzing Cultural Nuance...</span>
+                    <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                    <span>Analyzing cultural nuance…</span>
                   </>
                 ) : (
-                  'Decode Interaction · 解読する'
+                  'Decode interaction · 解読する'
                 )}
               </button>
               {error && (
-                <p className="text-sm text-red-600 bg-red-50 border border-red-200 rounded-xl p-3">
+                <p className="text-[13px] text-red-600 bg-red-50 rounded-xl px-3 py-2.5">
                   {error}
                 </p>
               )}
@@ -748,9 +757,9 @@ const App = () => {
           </section>
         )}
 
-        <footer className="text-center pt-8 border-t border-slate-200">
-          <p className="text-xs text-slate-400 font-light max-w-md mx-auto leading-relaxed uppercase tracking-tighter">
-            April Ma All Rights Reserved
+        <footer className="text-center pt-2">
+          <p className="text-[11px] text-[#94A3B8] tracking-wide">
+            April Ma · All rights reserved
           </p>
         </footer>
       </main>

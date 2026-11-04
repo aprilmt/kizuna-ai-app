@@ -2,11 +2,28 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --kz-primary: #293E53;
+  --kz-primary-deep: #1e2f40;
+  --kz-accent: #F69C91;
+  --kz-success: #10B981;
+  --kz-neutral: #F8FAFC;
+  --kz-canvas: #EEF2F6;
+  --kz-ink: #0F172A;
+  --kz-muted: #64748B;
+  --kz-line: #E2E8F0;
+  --kz-shadow: 0 18px 50px rgba(15, 23, 42, 0.08);
+  --kz-radius: 2.5rem;
+}
+
 body {
   margin: 0;
   font-family: "Rubik", "Noto Sans JP", sans-serif;
   font-optical-sizing: auto;
   font-style: normal;
+  color: var(--kz-ink);
+  background: var(--kz-canvas);
+  -webkit-font-smoothing: antialiased;
 }
 
 @keyframes kizuna-enter {

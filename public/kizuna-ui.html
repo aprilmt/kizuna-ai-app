@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kizuna UI — Style Kit</title>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Rubik:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --primary: #293E53;
+      --primary-deep: #1e2f40;
+      --secondary: #F69C91;
+      --tertiary: #10B981;
+      --neutral: #F8FAFC;
+      --ink: #0F172A;
+      --muted: #64748B;
+      --line: #E2E8F0;
+      --card: #FFFFFF;
+      --soft: #F1F5F9;
+      --danger: #EF4444;
+      --page: #283E53;
+      --shell: #EEF2F6;
+      --radius-card: 2.5rem;
+      --radius-btn: 0.85rem;
+      --radius-pill: 999px;
+      --shadow: 0 18px 50px rgba(15, 23, 42, 0.08);
+      --shadow-card: 0 18px 50px rgba(15, 23, 42, 0.08);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: Rubik, "Noto Sans JP", system-ui, sans-serif;
+      color: var(--ink);
+      background: #283E53;
+      padding: 2rem 1.25rem 3rem;
+    }
+
+    .page {
+      width: min(1120px, 100%);
+      margin: 0 auto;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+      margin-bottom: 1.25rem;
+      color: #F8FAFC;
+    }
+
+    .brand img {
+      width: 2.75rem;
+      height: 2.75rem;
+      object-fit: contain;
+      background: #F8FAFC;
+      border-radius: 1rem;
+      padding: 0.35rem;
+      box-sizing: border-box;
+    }
+
+    .brand h1 {
+      margin: 0;
+      font-size: 1.35rem;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+    }
+
+    .brand p {
+      margin: 0.15rem 0 0;
+      font-size: 0.85rem;
+      color: #94A3B8;
+    }
+
+    .shell {
+      background: var(--shell);
+      border-radius: 2.5rem;
+      padding: 1.35rem;
+      box-shadow: var(--shadow);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 0.95fr 0.85fr 1fr 1.15fr;
+      gap: 1rem;
+      align-items: stretch;
+    }
+
+    .col {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      min-width: 0;
+    }
+
+    .card {
+      background: var(--card);
+      border-radius: var(--radius-card);
+      border: 0;
+      box-shadow: var(--shadow-card);
+    }
+
+    /* Color cards */
+    .swatch {
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      min-height: 7.4rem;
+    }
+
+    .swatch-main {
+      flex: 1;
+      padding: 1rem 1.05rem 0.85rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      color: #fff;
+      min-height: 4.6rem;
+    }
+
+    .swatch-main.light {
+      color: var(--ink);
+    }
+
+    .swatch-label {
+      font-size: 0.95rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+
+    .swatch-hex {
+      font-size: 0.78rem;
+      font-weight: 600;
+      opacity: 0.92;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .swatch-scale {
+      display: grid;
+      grid-template-columns: repeat(10, 1fr);
+      height: 1.35rem;
+    }
+
+    .swatch-scale span { display: block; }
+
+    /* Type cards */
+    .type-card {
+      flex: 1;
+      padding: 1rem 1.1rem 1.15rem;
+      display: flex;
+      flex-direction: column;
+      min-height: 10.5rem;
+    }
+
+    .type-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 0.5rem;
+    }
+
+    .type-role {
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--muted);
+    }
+
+    .type-family {
+      font-size: 0.72rem;
+      font-weight: 500;
+      color: #94A3B8;
+    }
+
+    .type-sample {
+      margin-top: auto;
+      line-height: 0.9;
+      letter-spacing: -0.06em;
+      color: var(--ink);
+    }
+
+    .type-sample.headline { font-size: 4.4rem; font-weight: 700; }
+    .type-sample.body { font-size: 3.2rem; font-weight: 500; }
+    .type-sample.caption { font-size: 2.3rem; font-weight: 500; }
+
+    /* Buttons */
+    .panel {
+      padding: 1.15rem 1.15rem 1.2rem;
+    }
+
+    .panel-title {
+      margin: 0 0 0.9rem;
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      color: var(--muted);
+    }
+
+    .btn-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.45rem;
+      min-height: 2.6rem;
+      padding: 0.65rem 1rem;
+      border-radius: var(--radius-btn);
+      border: 0;
+      font: inherit;
+      font-size: 0.92rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: transform 120ms ease, background 120ms ease;
+    }
+
+    .btn:active { transform: scale(0.985); }
+
+    .btn-primary {
+      background: var(--primary);
+      color: #fff;
+    }
+
+    .btn-primary:hover { background: var(--primary-deep); }
+
+    .btn-secondary {
+      background: var(--soft);
+      color: var(--ink);
+    }
+
+    .btn-inverted {
+      background: var(--primary-deep);
+      color: #fff;
+    }
+
+    .btn-outlined {
+      background: var(--neutral);
+      color: var(--ink);
+      box-shadow: inset 0 0 0 1px var(--line);
+    }
+
+    .dividers {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      padding: 1.15rem 1.1rem;
+    }
+
+    .divider {
+      height: 3px;
+      border-radius: var(--radius-pill);
+    }
+
+    .divider.primary { background: var(--primary); }
+    .divider.secondary { background: var(--secondary); }
+    .divider.neutral { background: #0F172A; }
+
+    .icon-row {
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+      padding: 1rem 1.1rem;
+    }
+
+    .icon-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.45rem;
+      border: 0;
+      cursor: pointer;
+      color: #fff;
+      font: inherit;
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+
+    .icon-btn.square {
+      width: 2.7rem;
+      height: 2.7rem;
+      border-radius: 0.85rem;
+      background: var(--primary);
+    }
+
+    .icon-btn.wide {
+      height: 2.7rem;
+      padding: 0 1rem;
+      border-radius: 0.85rem;
+      background: var(--primary);
+    }
+
+    /* Right column */
+    .search {
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+      background: var(--soft);
+      border-radius: var(--radius-pill);
+      padding: 0.85rem 1.1rem;
+      color: var(--muted);
+    }
+
+    .search input {
+      border: 0;
+      outline: none;
+      background: transparent;
+      width: 100%;
+      font: inherit;
+      font-size: 0.98rem;
+      color: var(--ink);
+    }
+
+    .search input::placeholder { color: #94A3B8; }
+
+    .nav-pill {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.5rem;
+      background: var(--card);
+      border-radius: var(--radius-pill);
+      padding: 0.55rem 0.85rem;
+      border: 0;
+    }
+
+    .nav-item {
+      width: 2.55rem;
+      height: 2.55rem;
+      border-radius: var(--radius-pill);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--muted);
+      border: 0;
+      background: transparent;
+      cursor: pointer;
+    }
+
+    .nav-item.active {
+      background: var(--primary);
+      color: #fff;
+    }
+
+    /* Composer + ghost icons (live app) */
+    .composer-card {
+      padding: 0.95rem 1rem 1.05rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .composer-field {
+      position: relative;
+      background: #fff;
+      border-radius: var(--radius-card);
+      box-shadow: inset 0 0 0 1px var(--line);
+      min-height: 3.4rem;
+      padding: 0.85rem 5.5rem 0.85rem 1.1rem;
+      color: #94A3B8;
+      font-size: 0.92rem;
+    }
+
+    .composer-actions {
+      position: absolute;
+      right: 0.75rem;
+      bottom: 0.65rem;
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+
+    .ghost-icon {
+      width: 2rem;
+      height: 2rem;
+      padding: 0;
+      border: 0;
+      background: transparent;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      color: var(--primary);
+      line-height: 0;
+    }
+
+    .ghost-icon.muted { color: #CBD5E1; }
+    .ghost-icon.accent { color: var(--secondary); }
+    .ghost-icon.danger { color: var(--danger); }
+
+    .ghost-icon svg,
+    .ghost-mask {
+      width: 18px;
+      height: 18px;
+      display: block;
+    }
+
+    .ghost-mask {
+      background-color: currentColor;
+      -webkit-mask-repeat: no-repeat;
+      mask-repeat: no-repeat;
+      -webkit-mask-position: center;
+      mask-position: center;
+      -webkit-mask-size: contain;
+      mask-size: contain;
+    }
+
+    .ghost-mask.mic {
+      -webkit-mask-image: url("/icons/microphone-solid.svg");
+      mask-image: url("/icons/microphone-solid.svg");
+    }
+
+    .ghost-mask.send {
+      -webkit-mask-image: url("/icons/paper-plane-solid.svg");
+      mask-image: url("/icons/paper-plane-solid.svg");
+    }
+
+    /* XAI specimen */
+    .xai-card {
+      padding: 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.65rem;
+    }
+
+    .xai-label {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.82rem;
+      font-weight: 500;
+      color: var(--primary);
+    }
+
+    .xai-label.success { color: var(--tertiary); }
+    .xai-label.success span { color: var(--primary); }
+
+    .xai-meter {
+      display: flex;
+      align-items: flex-end;
+      gap: 0.65rem;
+    }
+
+    .xai-meter strong {
+      font-size: 1.55rem;
+      font-weight: 600;
+      letter-spacing: -0.03em;
+      color: var(--primary);
+      line-height: 1;
+    }
+
+    .xai-bar {
+      flex: 1;
+      height: 0.55rem;
+      margin-bottom: 0.15rem;
+      background: var(--neutral);
+      border-radius: var(--radius-pill);
+      overflow: hidden;
+    }
+
+    .xai-bar > span {
+      display: block;
+      height: 100%;
+      width: 88%;
+      background: var(--tertiary);
+      border-radius: var(--radius-pill);
+    }
+
+    .xai-meta {
+      font-size: 0.7rem;
+      color: var(--muted);
+    }
+
+    .surface-card {
+      border: 1px solid var(--line);
+      box-shadow: none;
+    }
+
+    .tokens {
+      margin-top: 1.25rem;
+      color: #94A3B8;
+      font-size: 0.78rem;
+      line-height: 1.5;
+    }
+
+    .tokens code {
+      color: #CBD5E1;
+      font-size: 0.76rem;
+    }
+
+    @media (max-width: 980px) {
+      .grid { grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 1rem 0.75rem 2rem; }
+      .shell { border-radius: 1.75rem; padding: 0.85rem; }
+      .grid { grid-template-columns: 1fr; }
+      .type-sample.headline { font-size: 3.6rem; }
+      .type-sample.body { font-size: 2.8rem; }
+      .type-sample.caption { font-size: 2.1rem; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header class="brand">
+      <img src="/logo.png" alt="Kizuna AI" />
+      <div>
+        <h1>Kizuna UI</h1>
+        <p>Style kit · synced to the live app</p>
+      </div>
+    </header>
+
+    <main class="shell">
+      <div class="grid">
+        <!-- Colors -->
+        <section class="col" aria-label="Color palette">
+          <article class="card swatch">
+            <div class="swatch-main" style="background: var(--primary);">
+              <div class="swatch-label">Primary</div>
+              <div class="swatch-hex">#293E53</div>
+            </div>
+            <div class="swatch-scale" aria-hidden="true">
+              <span style="background:#0B121A"></span>
+              <span style="background:#121C28"></span>
+              <span style="background:#1E2F40"></span>
+              <span style="background:#293E53"></span>
+              <span style="background:#3A536B"></span>
+              <span style="background:#4E6A84"></span>
+              <span style="background:#6B849C"></span>
+              <span style="background:#94A8BA"></span>
+              <span style="background:#C5D0DB"></span>
+              <span style="background:#E8EEF3"></span>
+            </div>
+          </article>
+
+          <article class="card swatch">
+            <div class="swatch-main light" style="background: var(--secondary);">
+              <div class="swatch-label">Accent</div>
+              <div class="swatch-hex">#F69C91</div>
+            </div>
+            <div class="swatch-scale" aria-hidden="true">
+              <span style="background:#4A1F1A"></span>
+              <span style="background:#7A3A33"></span>
+              <span style="background:#A85A52"></span>
+              <span style="background:#D07A71"></span>
+              <span style="background:#F69C91"></span>
+              <span style="background:#F8B0A7"></span>
+              <span style="background:#FAC4BD"></span>
+              <span style="background:#FCD7D2"></span>
+              <span style="background:#FDE8E5"></span>
+              <span style="background:#FEF4F2"></span>
+            </div>
+          </article>
+
+          <article class="card swatch">
+            <div class="swatch-main" style="background: var(--tertiary);">
+              <div class="swatch-label">Success</div>
+              <div class="swatch-hex">#10B981</div>
+            </div>
+            <div class="swatch-scale" aria-hidden="true">
+              <span style="background:#022C22"></span>
+              <span style="background:#064E3B"></span>
+              <span style="background:#065F46"></span>
+              <span style="background:#047857"></span>
+              <span style="background:#059669"></span>
+              <span style="background:#10B981"></span>
+              <span style="background:#34D399"></span>
+              <span style="background:#6EE7B7"></span>
+              <span style="background:#A7F3D0"></span>
+              <span style="background:#D1FAE5"></span>
+            </div>
+          </article>
+
+          <article class="card swatch">
+            <div class="swatch-main light" style="background: var(--neutral);">
+              <div class="swatch-label">Neutral</div>
+              <div class="swatch-hex">#F8FAFC</div>
+            </div>
+            <div class="swatch-scale" aria-hidden="true">
+              <span style="background:#000000"></span>
+              <span style="background:#1E293B"></span>
+              <span style="background:#334155"></span>
+              <span style="background:#475569"></span>
+              <span style="background:#64748B"></span>
+              <span style="background:#94A3B8"></span>
+              <span style="background:#CBD5E1"></span>
+              <span style="background:#E2E8F0"></span>
+              <span style="background:#F1F5F9"></span>
+              <span style="background:#F8FAFC"></span>
+            </div>
+          </article>
+        </section>
+
+        <!-- Typography -->
+        <section class="col" aria-label="Typography">
+          <article class="card type-card">
+            <div class="type-top">
+              <span class="type-role">Headlines</span>
+              <span class="type-family">Rubik</span>
+            </div>
+            <div class="type-sample headline">Aa</div>
+          </article>
+          <article class="card type-card">
+            <div class="type-top">
+              <span class="type-role">Body</span>
+              <span class="type-family">Rubik</span>
+            </div>
+            <div class="type-sample body">Aa</div>
+          </article>
+          <article class="card type-card">
+            <div class="type-top">
+              <span class="type-role">Caption</span>
+              <span class="type-family">Rubik</span>
+            </div>
+            <div class="type-sample caption">Aa</div>
+          </article>
+        </section>
+
+        <!-- Buttons / lines / icon buttons -->
+        <section class="col" aria-label="Buttons">
+          <article class="card panel">
+            <p class="panel-title">Buttons</p>
+            <div class="btn-stack">
+              <button class="btn btn-primary" type="button">Primary</button>
+              <button class="btn btn-secondary" type="button">Secondary</button>
+              <button class="btn btn-inverted" type="button">Inverted</button>
+              <button class="btn btn-outlined" type="button">Outlined</button>
+            </div>
+          </article>
+
+          <article class="card dividers" aria-label="Accent lines">
+            <div class="divider primary"></div>
+            <div class="divider secondary"></div>
+            <div class="divider neutral"></div>
+          </article>
+
+          <article class="card icon-row">
+            <button class="icon-btn square" type="button" aria-label="Edit">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M12 20h9" />
+                <path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z" />
+              </svg>
+            </button>
+            <button class="icon-btn wide" type="button">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M12 20h9" />
+                <path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z" />
+              </svg>
+              Label
+            </button>
+          </article>
+        </section>
+
+        <!-- Inputs / composer / XAI -->
+        <section class="col" aria-label="Inputs and product surfaces">
+          <article class="card" style="padding: 0.85rem; background: transparent; box-shadow: none;">
+            <label class="search" aria-label="Search">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <circle cx="11" cy="11" r="7" />
+                <path d="m20 20-3.5-3.5" />
+              </svg>
+              <input type="search" placeholder="Search" />
+            </label>
+          </article>
+
+          <article class="card composer-card" aria-label="Composer">
+            <div class="composer-field">
+              Ask a follow-up
+              <div class="composer-actions">
+                <button class="ghost-icon" type="button" aria-label="Microphone">
+                  <span class="ghost-mask mic" aria-hidden="true"></span>
+                </button>
+                <button class="ghost-icon muted" type="button" aria-label="Send">
+                  <span class="ghost-mask send" aria-hidden="true"></span>
+                </button>
+              </div>
+            </div>
+            <div style="display:flex; align-items:center; justify-content:center; gap:0.85rem; padding-top:0.15rem;">
+              <button class="ghost-icon accent" type="button" aria-label="Flag">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z" />
+                  <line x1="4" x2="4" y1="22" y2="15" />
+                </svg>
+              </button>
+              <button class="ghost-icon danger" type="button" aria-label="Delete">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M3 6h18" />
+                  <path d="M8 6V4h8v2" />
+                  <path d="M19 6l-1 14H6L5 6" />
+                </svg>
+              </button>
+            </div>
+          </article>
+
+          <article class="card xai-card surface-card" aria-label="AI confidence">
+            <div class="xai-label success">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z" />
+                <path d="m9 12 2 2 4-4" />
+              </svg>
+              <span>AI confidence</span>
+            </div>
+            <div class="xai-meter">
+              <strong>88%</strong>
+              <div class="xai-bar"><span></span></div>
+            </div>
+            <div class="xai-meta">GPT-4o · chain-of-thought</div>
+          </article>
+        </section>
+      </div>
+    </main>
+
+    <p class="tokens">
+      Tokens:
+      <code>--primary #293E53</code> ·
+      <code>--secondary #F69C91</code> ·
+      <code>--tertiary #10B981</code> ·
+      <code>--neutral #F8FAFC</code> ·
+      <code>--canvas #EEF2F6</code> ·
+      Type: Rubik · Radius 2.5rem
+      <br />
+      Roles: Primary brand · Accent (report/heart) · Success (confidence) · White cards on canvas
+      <br />
+      Controls: ghost mic/send in composer · outlined flag · bordered XAI wells
+    </p>
+  </div>
+</body>
+</html>
