@@ -11,7 +11,7 @@ In these cultures, what people say often differs from what they mean. A polite "
 
 Kizuna bridges this gap. It acts as a real-time cultural interpreter that goes beyond literal translation to reveal the hidden intent, social dynamics, and emotional subtext behind everyday business interactions.
 
-<img width="907" height="884" alt="kizuna-preview" src="https://github.com/user-attachments/assets/e7b48cc5-757f-4ec5-b429-8f0501d87cb5" />
+<img width="625" height="646" alt="Screenshot 2026-11-04 at 20 04 52" src="https://github.com/user-attachments/assets/751d28ec-9271-4c73-988c-eeefa7876ce6" />
 
 ## The Problem It Solves
 
@@ -89,7 +89,8 @@ Deployed on [Render](https://render.com) as a Web Service.
 - **Health check path:** `/health` (bypasses the password gate)
 
 ## UI Style Guide
-<img width="794" height="544" alt="kizuna-ui-kit" src="https://github.com/user-attachments/assets/f8e7078a-1a85-4e49-84bf-d6f6527f2e25" />
+
+<img width="892" height="563" alt="Screenshot 2026-11-04 at 20 14 15" src="https://github.com/user-attachments/assets/ca54e116-9232-4e2d-bf8c-e15d1d1ac924" />
 
 
 ## License
